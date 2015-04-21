@@ -50,10 +50,6 @@ namespace AO
 				// Constructors
 				StackAllocator(void);
 
-				StackAllocator(StackAllocator const &) noexcept = default;
-				
-				StackAllocator(StackAllocator &&) noexcept = default;
-
 				template <class OtherType, std::size_t OtherSize>
 				StackAllocator(StackAllocator<OtherType, OtherSize> const &other) noexcept;
 
@@ -61,10 +57,6 @@ namespace AO
 				StackAllocator(StackAllocator<OtherType, OtherSize> &&other) noexcept;
 
 				// Assignment Operators
-				StackAllocator &operator=(StackAllocator const &) noexcept = default;
-
-				StackAllocator &operator=(StackAllocator &&) noexcept = default;
-
 				template <class OtherType, std::size_t OtherSize>
 				StackAllocator &operator=(StackAllocator<OtherType, OtherSize> const &other) noexcept;
 
