@@ -13,10 +13,10 @@ namespace AO
 			class ThreadSafeStackAllocator : public StackAllocator<Type, Capacity>
 			{
 				// Friendships
-				template <class OtherType, std::size_t OtherCapacity, class Enable>
+				template <class OtherType, std::size_t OtherCapacity, class OtherEnable>
 				friend class ThreadSafeStackAllocator;
 
-				template <class OtherType, std::size_t OtherCapacity, class Enable>
+				template <class OtherType, std::size_t OtherCapacity, class OtherEnable>
 				friend class StackAllocator;
 
 			public:
