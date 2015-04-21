@@ -46,10 +46,6 @@ namespace AO
 				// Constructors
 				ThreadSafeStackAllocator(void);
 
-				ThreadSafeStackAllocator(ThreadSafeStackAllocator const &) noexcept = default;
-
-				ThreadSafeStackAllocator(ThreadSafeStackAllocator &&) noexcept = default;
-
 				template <class OtherType, std::size_t OtherSize>
 				ThreadSafeStackAllocator(ThreadSafeStackAllocator<OtherType, OtherSize> const &other) noexcept;
 
@@ -57,10 +53,6 @@ namespace AO
 				ThreadSafeStackAllocator(ThreadSafeStackAllocator<OtherType, OtherSize> &&other) noexcept;
 
 				// Assignment Operators
-				ThreadSafeStackAllocator &operator=(ThreadSafeStackAllocator const &) noexcept = default;
-
-				ThreadSafeStackAllocator &operator=(ThreadSafeStackAllocator &&) noexcept = default;
-
 				template <class OtherType, std::size_t OtherSize>
 				ThreadSafeStackAllocator &operator=(ThreadSafeStackAllocator<OtherType, OtherSize> const &other) noexcept;
 
