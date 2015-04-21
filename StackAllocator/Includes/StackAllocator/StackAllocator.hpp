@@ -10,17 +10,17 @@ namespace AO
 	{
 		inline namespace Version_1
 		{
-			template <class Type, std::size_t Capacity, class Enable>
+			template <class Type, std::size_t Capacity, class OtherEnable>
 			class ThreadSafeStackAllocator;
 
 			template <class Type, std::size_t Capacity = 256, class Enable = typename std::enable_if<!std::is_same<Type, void>::value && Capacity != 0>::type>
 			class StackAllocator
 			{
 				// Friendships
-				template <class OtherType, std::size_t OtherCapacity, class Enable>
+				template <class OtherType, std::size_t OtherCapacity, class OtherEnable>
 				friend class StackAllocator;
 
-				template <class OtherType, std::size_t OtherCapacity, class Enable>
+				template <class OtherType, std::size_t OtherCapacity, class OtherEnable>
 				friend class ThreadSafeStackAllocator;
 
 			public:
