@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 
 namespace AO
 {
@@ -41,6 +42,10 @@ namespace AO
 					virtual void *allocate(std::size_t numberOfBytes, std::size_t alignment) = 0;
 
 					virtual void deallocate(void const *memory, std::size_t numberOfBytes) = 0;
+					
+				protected:
+					// Static Attributes
+					static constexpr const std::size_t Alignment = alignof(std::max_align_t);
 				};
 			}
 		}
