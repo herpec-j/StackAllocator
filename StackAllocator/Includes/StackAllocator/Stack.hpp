@@ -48,11 +48,8 @@ namespace AO
 				virtual void deallocate(void const *memory, std::size_t numberOfBytes) override;
 
 			private:
-				// Static Attributes
-				static constexpr const std::size_t Alignment = alignof(std::max_align_t);
-
 				// Attributes
-				alignas(Stack<Capacity>::Alignment) std::uint8_t buffer[Capacity];
+				alignas(IStack::Alignment) std::uint8_t buffer[Capacity];
 
 				void *bufferPointer = buffer;
 			};
