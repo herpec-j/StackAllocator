@@ -1,7 +1,6 @@
 #pragma once
 
 #include <utility>
-#include <memory>
 #include <cassert>
 #include <mutex>
 
