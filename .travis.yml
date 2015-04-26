@@ -16,7 +16,7 @@ install:
   - if test $CC = gcc; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20; fi
   - if test $CC = gcc; then sudo update-alternatives --config gcc; fi
   - if test $CC = gcc; then sudo update-alternatives --config g++; fi
-  - if test $CC = clang; then sudo apt-get install --yes --force-yes llvm-3.7-dev clang-3.7; fi
+  - if test $CC = clang; then sudo apt-get install --yes --force-yes libllvm3.7 libstdc++ llvm-3.7 llvm-3.7-dev clang-3.7; fi
   - if test $CC = clang; then sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 20; fi
   - if test $CC = clang; then sudo update-alternatives --config clang; fi
 before_script:
