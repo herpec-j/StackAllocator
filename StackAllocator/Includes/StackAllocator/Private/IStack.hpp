@@ -12,8 +12,6 @@ namespace AO
 		{
 			namespace Private
 			{
-				using namespace std;
-				
 				class IStack
 				{
 				public:
@@ -47,7 +45,7 @@ namespace AO
 					
 				protected:
 					// Static Attributes
-					static constexpr const std::size_t Alignment = alignof(max_align_t);
+					static constexpr const std::size_t Alignment = alignof(std::max_align_t);
 				};
 			}
 		}
