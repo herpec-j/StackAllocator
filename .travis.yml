@@ -20,7 +20,7 @@ install:
   - if test $CC = clang; then sudo apt-get -qq install build-essential; fi
   - if test $CC = clang; then sudo apt-get -qq --allow-unauthenticated install libstdc++-4.9-dev; fi
   - if test $CC = clang; then sudo apt-get -qq --allow-unauthenticated install clang-3.6; fi
-  - if test $CC = clang; then sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.5 20; fi
+  - if test $CC = clang; then sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.6 20; fi
   - if test $CC = clang; then sudo update-alternatives --config clang; fi
 before_script:
   - mkdir Build
