@@ -16,8 +16,8 @@ install:
   - if test $CC = gcc; then sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 20; fi
   - if test $CC = gcc; then sudo update-alternatives --config gcc; fi
   - if test $CC = gcc; then sudo update-alternatives --config g++; fi
-  - if test $CC = clang; then sudo apt-get install --yes --force-yes libclang-3.5-dev clang-3.5; fi
-  - if test $CC = clang; then sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.5 20; fi
+  - if test $CC = clang; then sudo apt-get install --yes --force-yes clang-3.7; fi
+  - if test $CC = clang; then sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 20; fi
   - if test $CC = clang; then sudo update-alternatives --config clang; fi
 before_script:
   - mkdir Build
