@@ -1,5 +1,7 @@
 #pragma once
 
+#include <type_traits>
+
 #include "Private/IStack.hpp"
 
 namespace AO
@@ -48,10 +50,15 @@ namespace AO
 				virtual void deallocate(void const *memory, std::size_t numberOfBytes) override;
 
 			private:
-				// Attributes
-				alignas(IStack::Alignment) std::uint8_t buffer[Capacity];
+				// Type Aliases
+				using StorageType = typename std::aligned_storage<sizeof(std::uint8_t), IStack::Alignment>::type;
 
-				void *bufferPointer = buffer;
+				using BufferType = StorageType[Capacity];
+
+				// Attributes
+				BufferType buffer;
+
+				std::size_t bufferSize = 0;
 			};
 		}
 	}

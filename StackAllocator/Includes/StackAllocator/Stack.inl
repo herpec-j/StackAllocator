@@ -41,7 +41,7 @@ namespace AO
 			template <std::size_t Capacity>
 			inline std::size_t Stack<Capacity>::size(void) const noexcept
 			{
-				return static_cast<std::uint8_t *>(bufferPointer) - buffer;
+				return bufferSize;
 			}
 
 			template <std::size_t Capacity>
@@ -53,18 +53,18 @@ namespace AO
 			template <std::size_t Capacity>
 			inline void Stack<Capacity>::reset(void) noexcept
 			{
-				bufferPointer = static_cast<void *>(buffer);
+				bufferSize = 0;
 			}
 
 			template <std::size_t Capacity>
 			inline void *Stack<Capacity>::allocate(std::size_t numberOfBytes, std::size_t alignment)
 			{
 				std::size_t space = capacity() - size();
+				void *bufferPointer = &buffer[bufferSize];
 				if (std::align(alignment, numberOfBytes, bufferPointer, space))
 				{
-					void *allocatedMemory = bufferPointer;
-					bufferPointer = static_cast<void *>(static_cast<std::uint8_t *>(bufferPointer) + numberOfBytes);
-					return allocatedMemory;
+					bufferSize = static_cast<std::size_t>(static_cast<StorageType const *>(bufferPointer) - &buffer[0]) + numberOfBytes;
+					return bufferPointer;
 				}
 				else
 				{
@@ -78,13 +78,14 @@ namespace AO
 			template <std::size_t Capacity>
 			inline void Stack<Capacity>::deallocate(void const *memory, std::size_t numberOfBytes)
 			{
-				std::uint8_t const *endOfMemory = static_cast<std::uint8_t const *>(memory) + numberOfBytes;
-				if (buffer <= memory && endOfMemory <= buffer + Capacity)
+				StorageType const *beginOfMemory = static_cast<StorageType const *>(memory);
+				StorageType const *endOfMemory = beginOfMemory + numberOfBytes;
+				if (&buffer[0] <= memory && endOfMemory <= &buffer[0] + Capacity)
 				{
-					assert(endOfMemory == bufferPointer && "Invalid memory");
-					if (endOfMemory == bufferPointer)
+					assert(static_cast<std::size_t>(endOfMemory - &buffer[0]) == bufferSize && "Invalid memory");
+					if (static_cast<std::size_t>(endOfMemory - &buffer[0]) == bufferSize)
 					{
-						bufferPointer = const_cast<void *>(memory);
+						bufferSize = static_cast<std::size_t>(beginOfMemory - &buffer[0]);
 					}
 				}
 				else

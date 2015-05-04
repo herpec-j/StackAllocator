@@ -1,5 +1,7 @@
 #pragma once
 
+#include <thread>
+
 #include "SpinLock.hpp"
 
 namespace AO
@@ -20,7 +22,15 @@ namespace AO
 				// Methods
 				inline void SpinLock::lock(void)
 				{
-					while (atomicLock.exchange(true));
+					while (true)
+					{
+						while (atomicLock);
+						if (!atomicLock.exchange(true))
+						{
+							return;
+						}
+						std::this_thread::yield();
+					}
 				}
 
 				inline void SpinLock::unlock(void)
