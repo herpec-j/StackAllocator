@@ -2,7 +2,7 @@
 
 #include <utility>
 #include <cassert>
-#include <mutex>
+#include <memory>
 
 #include "Stack.hpp"
 

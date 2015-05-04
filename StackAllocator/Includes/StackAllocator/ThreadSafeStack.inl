@@ -1,5 +1,7 @@
 #pragma once
 
+#include <mutex>
+
 #include "ThreadSafeStack.hpp"
 
 namespace AO
