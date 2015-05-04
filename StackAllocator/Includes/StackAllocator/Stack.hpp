@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <type_traits>
 
 #include "Private/IStack.hpp"
@@ -43,6 +44,7 @@ namespace AO
 
 				std::size_t capacity(void) const noexcept override final;
 
+				// Virtual Methods
 				virtual void reset(void) noexcept override;
 
 				virtual void *allocate(std::size_t numberOfBytes, std::size_t alignment) override;
@@ -51,7 +53,7 @@ namespace AO
 
 			private:
 				// Type Aliases
-				using StorageType = typename std::aligned_storage<sizeof(std::uint8_t), IStack::Alignment>::type;
+				using StorageType = typename std::aligned_storage<sizeof(std::uint8_t)>::type;
 
 				using BufferType = StorageType[Capacity];
 

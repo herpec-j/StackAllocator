@@ -50,6 +50,7 @@ namespace AO
 				return Capacity;
 			}
 
+			// Virtual Methods
 			template <std::size_t Capacity>
 			inline void Stack<Capacity>::reset(void) noexcept
 			{

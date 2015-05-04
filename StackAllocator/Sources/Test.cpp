@@ -70,7 +70,7 @@ int main(void)
 	float const classicDuration = testClassic();
 	float const threadSafeDuration = testThreadSafeAllocator();
 	float const unsafeDuration = testUnsafeAllocator();
-	//assert(unsafeDuration < threadSafeDuration && threadSafeDuration < classicDuration && "Allocator is too slow");
+	assert(unsafeDuration < threadSafeDuration && threadSafeDuration < classicDuration && "Allocator is too slow");
 	AO::Allocator::Stack<2 * sizeof(short) + sizeof(int)> fa;
 	assert(fa.empty() && fa.size() == 0 && "Allocator should be empty");
 	int *const value1 = fa.create<int>(1);
